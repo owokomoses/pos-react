@@ -42,7 +42,7 @@ const Sidebar = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/items/makesales" activeClassName="active">
+                <NavLink to="/items/makesale" activeClassName="active">
                   Make sale
                 </NavLink>
               </li>
