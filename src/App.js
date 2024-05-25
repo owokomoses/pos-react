@@ -4,6 +4,7 @@ import RegisterForm from './components/RegisterForm';
 import LoginForm from './components/LoginForm';
 import UpdatePassword from './components/UpdatePassword'; // Import the new component
 import Dashboard from './components/Dashboard';
+import AddItemForm from './components/AddItemForm';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route exact path="/login" component={LoginForm} />
         <Route exact path="/forgot-password" component={UpdatePassword} /> 
         <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/items/add" component={AddItemForm} />
         {/* Redirect to register page by default */}
         <Redirect from="/register" to="/login" />
       </Switch>

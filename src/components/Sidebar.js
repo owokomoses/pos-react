@@ -1,42 +1,60 @@
 // src/components/Sidebar.js
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Sidebar.css';
 
 const Sidebar = () => {
-return (
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  return (
     <div className="sidebar">
-    <div className="profile-section">
+      <div className="profile-section">
         <img
           src="https://via.placeholder.com/100" // Replace with the actual profile picture URL
-        alt="Profile"
+          alt="Profile"
           className="profile-picture"
         />
         <p className="profile-name">User Name</p>
-    </div>
-    <h3>Dashboard</h3>
-    <ul>
+      </div>
+      <h3>Homechoice Supermarket</h3>
+      <ul>
         <li>
-        <NavLink exact to="/dashboard" activeClassName="active">
-            Home
-        </NavLink>
+          <NavLink exact to="/dashboard" activeClassName="active">
+            Dashboard
+          </NavLink>
         </li>
         <li>
-        <NavLink to="/profile" activeClassName="active">
+          <NavLink to="/profile" activeClassName="active">
             Profile
-        </NavLink>
+          </NavLink>
+        </li>
+        <li onClick={toggleDropdown} className="dropdown-toggle">
+          Items
+          {dropdownOpen && (
+            <ul className="dropdown-menu">
+            <li>
+                <NavLink to="/items/add" activeClassName="active">
+                Add Items
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/items/makesales" activeClassName="active">
+                  Make sale
+                </NavLink>
+              </li>
+            </ul>
+          )}
         </li>
         <li>
-        <NavLink to="/settings" activeClassName="active">
-            Settings
-        </NavLink>
-        </li>
-        <li>
-        <NavLink to="/logout" activeClassName="active">
+          <NavLink to="/logout" activeClassName="active">
             Logout
-        </NavLink>
+          </NavLink>
         </li>
-    </ul>
+      </ul>
     </div>
   );
 };
