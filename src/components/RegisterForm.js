@@ -1,8 +1,7 @@
-// src/components/RegisterForm.js
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import './RegisterForm.css'; // Import the CSS file
 
 const RegisterForm = () => {
     const [formData, setFormData] = useState({
@@ -33,9 +32,9 @@ const RegisterForm = () => {
     };
 
     return (
-        <div>
-            <h2>Register</h2>
-            <form onSubmit={handleSubmit}>
+        <div className="form-container">
+            <form className="form" onSubmit={handleSubmit}>
+                <h2>Register</h2>
                 <div>
                     <label>Email:</label>
                     <input
@@ -58,8 +57,8 @@ const RegisterForm = () => {
                 </div>
                 <button type="submit">Register</button>
             </form>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            {success && <p style={{ color: 'green' }}>{success}</p>}
+            {error && <p className="error-message">{error}</p>}
+            {success && <p className="success-message">{success}</p>}
         </div>
     );
 };

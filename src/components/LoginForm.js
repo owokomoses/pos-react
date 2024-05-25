@@ -1,7 +1,7 @@
-// src/components/LoginForm.js
-
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import './LoginForm.css'; // Import the shared CSS file
 
 const LoginForm = () => {
     const [formData, setFormData] = useState({
@@ -30,9 +30,9 @@ const LoginForm = () => {
     };
 
     return (
-        <div>
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
+        <div className="form-container">
+            <form className="form" onSubmit={handleSubmit}>
+                <h2>Login</h2>
                 <div>
                     <label>Email:</label>
                     <input
@@ -54,9 +54,10 @@ const LoginForm = () => {
                     />
                 </div>
                 <button type="submit">Login</button>
+                <Link to="/forgot-password" className="forgot-password-link">Forgot Password?</Link>
             </form>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            {success && <p style={{ color: 'green' }}>{success}</p>}
+            {error && <p className="error-message">{error}</p>}
+            {success && <p className="success-message">{success}</p>}
         </div>
     );
 };
