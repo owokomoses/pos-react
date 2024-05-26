@@ -1,0 +1,83 @@
+/* src/components/ItemList.css */
+
+.item-list {
+    margin-left: 200px; /* Ensure space for the sidebar */
+    padding: 20px;
+    width: calc(100% - 200px); /* Calculate the width to fill remaining space */
+    min-height: 100vh; /* Ensure the item list fills the entire height */
+    background-color: #f9f9f9;
+  }
+  
+  .item-table-container {
+    width: 100%; /* Adjust as needed */
+    max-width: 800px; /* Adjust as needed */
+    margin: 0 auto; /* Center the item list horizontally */
+  }
+  
+
+  
+  .item-list h2 {
+    text-align: center; /* Center the heading text */
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .item-list .error-message {
+    color: red;
+    margin-bottom: 20px;
+    text-align: center; /* Center the error message */
+  }
+  
+  .item-table-container {
+    width: 50%;
+    max-width: 800px; /* Adjust as needed */
+  }
+  
+  .item-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    border-radius: 20px;
+  }
+  
+  .item-table th,
+  .item-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .item-table th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .item-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .item-table tr:hover {
+    background-color: #ddd;
+  }
+  
+  .item-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .item-table button {
+    margin-right: 5px;
+    padding: 5px 10px;
+    border: none;
+    margin: 2px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .item-table button:hover {
+    background-color: #45a049;
+  }
+  

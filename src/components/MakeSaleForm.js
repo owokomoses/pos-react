@@ -1,7 +1,6 @@
-// src/components/MakeSaleForm.js
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import Sidebar from './Sidebar'; // Import the Sidebar component
 
 const MakeSaleForm = () => {
   const [formData, setFormData] = useState({
@@ -34,6 +33,7 @@ const MakeSaleForm = () => {
 
   return (
     <div className="form-container">
+      <Sidebar /> {/* Include the Sidebar component */}
       <form className="form" onSubmit={handleSubmit}>
         <h2>Make Sale</h2>
         <div>

@@ -46,6 +46,11 @@ const Sidebar = () => {
                   Make sale
                 </NavLink>
               </li>
+              <li>
+                <NavLink to="/items/itemlist" activeClassName="active">
+                Item List
+                </NavLink>
+              </li>
             </ul>
           )}
         </li>
