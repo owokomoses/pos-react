@@ -29,38 +29,45 @@
     font-weight: bold;
   }
   
-  .sidebar h3 {
-    margin-top: 0;
+  h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
   }
   
-  .sidebar ul {
-    list-style: none;
+  ul {
+    list-style-type: none;
     padding: 0;
   }
   
-  .sidebar ul li {
-    margin: 15px 0;
+  li {
+    margin-bottom: 10px;
   }
   
-  .sidebar ul li a {
-    color: white;
+  a {
+    color: #fff;
     text-decoration: none;
+    font-size: 16px;
+    transition: 0.3s;
   }
   
-  .sidebar ul li a.active {
-    font-weight: bold;
+  a:hover {
+    color: #ffcc00;
+  }
+  
+  .active {
+    color: #ffcc00;
+  }
+  
+  .dropdown-menu {
+    background-color: #555;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .dropdown-menu li {
+    margin-bottom: 5px;
   }
   
   .dropdown-toggle {
     cursor: pointer;
   }
-  
-  .dropdown-menu {
-    list-style: none;
-    padding-left: 20px;
-  }
-  
-  .dropdown-menu li {
-    margin: 10px 0;
-  }
-  

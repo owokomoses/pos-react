@@ -59,6 +59,21 @@ button:hover {
     background-color: #0056b3;
 }
 
+.already-have-account {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.already-have-account a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.already-have-account a:hover {
+    text-decoration: underline;
+}
+
+
 .error-message {
     color: red;
     margin-top: 10px;

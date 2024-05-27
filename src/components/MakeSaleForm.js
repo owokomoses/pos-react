@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Sidebar from './Sidebar'; // Import the Sidebar component
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const MakeSaleForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     price_Ksh: 0,
   });
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,19 +20,18 @@ const MakeSaleForm = () => {
     try {
       const response = await axios.post('http://localhost:4000/api/items/makeSale', formData);
       console.log(response.data); // Log the response
-      setSuccess('Sale made successfully');
-      setError(null);
+      toast.success('Sale made successfully');
       // Clear the form fields after successful submission
       setFormData({ name: '', price_Ksh: 0 });
     } catch (error) {
       console.error('Error making sale:', error);
-      setError(error.response?.data?.message || 'Error making sale');
-      setSuccess(null);
+      toast.error(error.response?.data?.message || 'Error making sale');
     }
   };
 
   return (
     <div className="form-container">
+      <ToastContainer position="top-right" />
       <Sidebar /> {/* Include the Sidebar component */}
       <form className="form" onSubmit={handleSubmit}>
         <h2>Make Sale</h2>
@@ -58,8 +57,6 @@ const MakeSaleForm = () => {
         </div>
         <button type="submit">Make Sale</button>
       </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {success && <p style={{ color: 'green' }}>{success}</p>}
     </div>
   );
 };

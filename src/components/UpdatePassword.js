@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ResetAndUpdatePasswordForm = () => {
     const [formData, setFormData] = useState({
@@ -9,8 +10,6 @@ const ResetAndUpdatePasswordForm = () => {
         newPassword: '',
         confirmPassword: ''
     });
-    const [error, setError] = useState(null);
-    const [success, setSuccess] = useState(null);
     const history = useHistory();
 
     const handleChange = (e) => {
@@ -21,7 +20,7 @@ const ResetAndUpdatePasswordForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (formData.newPassword !== formData.confirmPassword) {
-            setError('Passwords do not match');
+            toast.error('Passwords do not match');
             return;
         }
         try {
@@ -29,18 +28,19 @@ const ResetAndUpdatePasswordForm = () => {
                 email: formData.email,
                 newPassword: formData.newPassword
             });
-            setSuccess('Password reset and updated successfully');
-            setError(null);
+            toast.success('Password reset and updated successfully');
             // Redirect to login page after successful password reset and update
-            history.push('/login');
+            setTimeout(() => {
+                history.push('/login');
+            }, 1000);
         } catch (error) {
-            setError(error.response?.data?.message || 'Error resetting and updating password');
-            setSuccess(null);
+            toast.error(error.response?.data?.message || 'Error resetting and updating password');
         }
     };
 
     return (
         <div className="form-container">
+            <ToastContainer position="top-right" />
             <form className="form" onSubmit={handleSubmit}>
             <h2>Reset password</h2>
                 <div>
@@ -75,8 +75,6 @@ const ResetAndUpdatePasswordForm = () => {
                 </div>
                 <button type="submit">Reset Password</button>
             </form>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            {success && <p style={{ color: 'green' }}>{success}</p>}
         </div>
     );
 };

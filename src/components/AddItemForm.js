@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Sidebar from './Sidebar'; // Import the Sidebar component
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddItemForm = () => {
   const [formData, setFormData] = useState({
@@ -8,8 +10,6 @@ const AddItemForm = () => {
     quantity: 0,
     price_Ksh: 0,
   });
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,19 +21,18 @@ const AddItemForm = () => {
     try {
       const response = await axios.post('http://localhost:4000/api/items/addItem', formData);
       console.log(response.data); // Log the response
-      setSuccess('Item added successfully');
-      setError(null);
+      toast.success('Item added successfully');
       // Clear the form fields after successful submission
       setFormData({ name: '', quantity: 0, price_Ksh: 0 });
     } catch (error) {
       console.error('Error adding item:', error);
-      setError(error.response?.data?.message || 'Error adding item');
-      setSuccess(null);
+      toast.error(error.response?.data?.message || 'Error adding item');
     }
   };
 
   return (
     <div className="form-container">
+      <ToastContainer position="top-right" />
       <Sidebar /> {/* Include the Sidebar component */}
       <form className="form" onSubmit={handleSubmit}>
         <h2>Add Item</h2>
@@ -69,8 +68,6 @@ const AddItemForm = () => {
         </div>
         <button type="submit">Add Item</button>
       </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {success && <p style={{ color: 'green' }}>{success}</p>}
     </div>
   );
 };

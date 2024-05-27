@@ -29,6 +29,7 @@ const EditItemForm = ({ item, onClose, onUpdate }) => {
     try {
       const response = await axios.patch(`http://localhost:4000/api/items/updateItem/${item.item_id}`, formData);
       if (response.status === 200) {
+        // Update the item locally before closing the form
         onUpdate(item.item_id, formData);
         onClose();
       } else {

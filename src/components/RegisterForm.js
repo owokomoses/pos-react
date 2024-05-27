@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './RegisterForm.css'; // Import the CSS file
 
 const RegisterForm = () => {
     const [formData, setFormData] = useState({
+        username: '',
         email: '',
         password: ''
     });
-    const [error, setError] = useState(null);
-    const [success, setSuccess] = useState(null);
     const history = useHistory();
 
     const handleChange = (e) => {
@@ -20,21 +21,34 @@ const RegisterForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:4000/api/user/addUser', formData);
-            setSuccess('User registered successfully');
-            setError(null);
+            const response = await axios.post('http://localhost:4000/api/user/addUser', formData);
+            console.log("Register response:", response.data);
+            toast.success('Registration successful');
             // Redirect to login page after successful registration
-            history.push('/login');
+            setTimeout(() => {
+                history.push('/login');
+            }, 1000);
         } catch (error) {
-            setError(error.response?.data?.message || 'Error registering user');
-            setSuccess(null);
+            console.error("Error registering user:", error);
+            toast.error(error.response?.data?.message || 'Error in registration');
         }
     };
 
     return (
         <div className="form-container">
+            <ToastContainer position="top-right" />
             <form className="form" onSubmit={handleSubmit}>
                 <h2>Register</h2>
+                <div>
+                    <label>Username:</label>
+                    <input
+                        type="text"
+                        name="username"
+                        value={formData.username}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
                 <div>
                     <label>Email:</label>
                     <input
@@ -57,8 +71,9 @@ const RegisterForm = () => {
                 </div>
                 <button type="submit">Register</button>
             </form>
-            {error && <p className="error-message">{error}</p>}
-            {success && <p className="success-message">{success}</p>}
+            <p className="already-have-account">
+                Already have an account? <Link to="/login">Login here</Link>
+            </p>
         </div>
     );
 };
